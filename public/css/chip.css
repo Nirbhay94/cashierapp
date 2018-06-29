@@ -1,0 +1,65 @@
+.chip {
+    border: 10px;
+    box-sizing: border-box;
+    display: inline-block;
+    font-family: Roboto, sans-serif;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    text-decoration: none;
+    margin: 4px;
+    padding: 0px;
+    outline: none;
+    font-size: inherit;
+    font-weight: inherit;
+    position: relative;
+    background-color: rgb(224, 224, 224);
+    border-radius: 16px;
+    white-space: nowrap;
+    width: -webkit-fit-content;
+}
+
+.chip img{
+    color: rgb(255, 255, 255);
+    background-color: rgb(188, 188, 188);
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    margin-right: -4px;
+}
+
+.chip span{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 32px;
+    padding-left: 12px;
+    padding-right: 12px;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.chip-facebook, [type="checkbox"]:checked.facebook + div.account > label,
+[type="radio"]:checked.facebook + div.account > label {
+    background-color: #3b5998;
+    color: rgba(255, 255, 255, 0.870588);
+    transition: all .2s;
+}
+
+.chip-instagram, [type="checkbox"]:checked.instagram + div.account > label,
+[type="radio"]:checked.instagram + div.account > label {
+    background-color: #fb3958;
+    color: rgba(255, 255, 255, 0.870588);
+    transition: all .2s;
+}
+
+.chip-twitter, [type="checkbox"]:checked.twitter + div.account > label,
+[type="radio"]:checked.twitter + div.account > label {
+    background-color: #0084b4;
+    color: rgba(255, 255, 255, 0.870588);
+    transition: all .2s;
+}
+

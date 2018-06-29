@@ -1,0 +1,128 @@
+{
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=7.0.0",
+        "albertcht/invisible-recaptcha": "^1.8",
+        "barryvdh/elfinder-flysystem-driver": "^0.2.1",
+        "barryvdh/laravel-ide-helper": "^2.4",
+        "braintree/braintree_php": "^3.28",
+        "chillerlan/php-qrcode": "^2.0",
+        "creativeorange/gravatar": "~1.0",
+        "dirape/token": "^1.0",
+        "doctrine/dbal": "^2.5",
+        "dompdf/dompdf": "0.8.2",
+        "evenement/evenement": "^3.0",
+        "fideloper/proxy": "~3.3",
+        "google/recaptcha": "^1.1",
+        "intervention/image": "^2.4",
+        "jackiedo/dotenv-editor": "^1.0",
+        "jaybizzle/laravel-crawler-detect": "1.*",
+        "jeremykenedy/laravel-exception-notifier": "^1.1",
+        "jeremykenedy/laravel-https": "^1.1",
+        "jeremykenedy/uuid": "^3.1",
+        "laravel/framework": "5.5.*",
+        "laravel/socialite": "^3.0",
+        "laravel/tinker": "~1.0",
+        "laravelcollective/html": "^5.5",
+        "league/flysystem": "^1.0",
+        "league/flysystem-cached-adapter": "^1.0",
+        "maatwebsite/excel": "2.*",
+        "mcamara/laravel-localization": "^1.3",
+        "nexmo/client": "^1.4",
+        "nunomaduro/laravel-desktop-notifier": "1.*",
+        "paypal/rest-api-sdk-php": "*",
+        "phenx/php-font-lib": "0.5.1",
+        "phenx/php-svg-lib": "0.3",
+        "pragmarx/version": "^0.2.7",
+        "pusher/pusher-php-server": "^3.0",
+        "sabberworm/php-css-parser": "8.1.0",
+        "socialiteproviders/37signals": "^3.0",
+        "socialiteproviders/generators": "^2.0",
+        "socialiteproviders/instagram": "^3.0",
+        "socialiteproviders/twitch": "^3.0",
+        "socialiteproviders/youtube": "^3.0",
+        "sofa/eloquence": "^5.6",
+        "spatie/laravel-permission": "^2.9",
+        "stripe/stripe-php": "^6.7",
+        "themsaid/laravel-mail-preview": "^2.0",
+        "torann/geoip": "^1.0",
+        "trexology/pointable": "^1.0",
+        "yajra/laravel-datatables-oracle": "^8.3"
+    },
+    "require-dev": {
+        "filp/whoops": "~2.0",
+        "fzaninotto/faker": "~1.7",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~6.3"
+    },
+    "autoload": {
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ],
+        "psr-4": {
+            "App\\": "app/",
+            "Barryvdh\\Elfinder\\": "packages/laravel-elfinder/src/",
+            "Gerardojbaez\\Laraplans\\": "packages/laravel-plans/src/Laraplans/",
+            "Sukohi\\CsvValidator\\": "packages/laravel-csvvalidator/src/",
+            "Jrean\\UserVerification\\": "packages/laravel-user-verification/src/",
+            "ConsoleTVs\\Invoices\\": "packages/laravel-invoice/",
+            "Torann\\Currency\\": "packages/laravel-currency/src/",
+            "RachidLaasri\\LaravelInstaller\\": "packages/laravel-installer/src/"
+        },
+        "files": [
+            "app/helpers.php",
+            "packages/laravel-currency/src/helpers.php",
+            "packages/laravel-installer/src/Helpers/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+
+            ],
+            "providers": [
+                "Torann\\Currency\\CurrencyServiceProvider",
+                "Sukohi\\CsvValidator\\CsvValidatorServiceProvider",
+                "Jrean\\UserVerification\\UserVerificationServiceProvider",
+                "Barryvdh\\Elfinder\\ElfinderServiceProvider",
+                "ConsoleTVs\\Invoices\\InvoicesServiceProvider"
+            ],
+            "aliases": {
+                "UserVerification": "Jrean\\UserVerification\\Facades\\UserVerification",
+                "Currency": "Torann\\Currency\\Facades\\Currency"
+            }
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta",
+            "@php artisan ide-helper:models -N",
+            "@php artisan optimize",
+            "@php artisan version:refresh"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}

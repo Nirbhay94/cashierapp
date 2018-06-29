@@ -1,0 +1,42 @@
+.file-thumbnail{
+    margin: 15px 0;
+    border: 1px solid #f0f0f0;
+}
+.file-thumbnail-body{
+    background: #fcfcfc;
+    padding: 5px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.file-thumbnail-body .item{
+    float: left;
+    width: 56px;
+    height: 56px;
+    background-size: cover;
+    border: 1px solid #eee;
+    margin: 2px;
+    overflow: hidden;
+    position: relative;
+}
+.file-thumbnail-body .item button{
+    color: #fff;
+    opacity: 1;
+    padding: 0px 4px;
+    position: relative;
+    z-index: 10;
+}
+.file-thumbnail-footer{
+    background: #fafafa;
+}
+.file-thumbnail-footer .item{
+    float: left;
+    background: #fafafa;
+    text-align: center;
+    padding: 5px 8px;
+    border-right: 1px solid #f0f0f0;
+}
+.file-thumbnail-placeholder{
+    padding: 20px;
+    text-align: center;
+    color: #c2c2c2;
+    text-transform: uppercase;
+}
