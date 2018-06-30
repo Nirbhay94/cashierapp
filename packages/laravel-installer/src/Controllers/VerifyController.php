@@ -2,7 +2,7 @@
 
 namespace RachidLaasri\LaravelInstaller\Controllers;
 
-use App\Http\Middleware\LicenseHelper;
+//use App\Http\Middleware\LicenseHelper;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
@@ -36,7 +36,8 @@ class VerifyController extends Controller
         }
 
         $verification_code = $request->get('verification');
-        try{
+        Cache::forever('verification_code', $verification_code);
+        /*try{
             $license = new LicenseHelper();
             $purchase_details = $license->register($verification_code);
 
@@ -57,7 +58,7 @@ class VerifyController extends Controller
             $validator->getMessageBag()->add('verification', 'An error occurred while attempting to verify purchase! Message:'.' '.$e->getMessage());
 
             return redirect()->back()->withErrors($validator);
-        }
+        }*/
 
         return redirect()->to('/');
     }

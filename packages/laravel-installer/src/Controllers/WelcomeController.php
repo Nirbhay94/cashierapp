@@ -4,7 +4,7 @@ namespace RachidLaasri\LaravelInstaller\Controllers;
 
 use App\Http\Controllers\Controller;
 
-use App\Http\Middleware\LicenseHelper;
+//use App\Http\Middleware\LicenseHelper;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;

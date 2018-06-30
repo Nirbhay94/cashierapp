@@ -92,11 +92,11 @@ class RegisterController extends Controller
             'password_confirmation' => 'required|same:password',
         ];
 
-        if(config('settings.reCaptchaStatus')){
+        /*if(config('settings.reCaptchaStatus')){
             $rules = array_merge($rules, [
                 'g-recaptcha-response' => 'required|captcha'
             ]);
-        }
+        }*/
 
         return Validator::make($data, $rules);
     }

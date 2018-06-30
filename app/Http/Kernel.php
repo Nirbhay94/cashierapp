@@ -61,7 +61,7 @@ class Kernel extends HttpKernel
         'global'      => \App\Http\Middleware\GlobalVariables::class,
         'role'        => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission'  => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
-        'license'     => \App\Http\Middleware\LicenseHelper::class,
+//        'license'     => \App\Http\Middleware\LicenseHelper::class,
 
         // Localization Middleware
         'localize'              => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,

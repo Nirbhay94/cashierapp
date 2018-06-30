@@ -2,7 +2,7 @@
 
 namespace RachidLaasri\LaravelInstaller\Middleware;
 
-use App\Http\Middleware\LicenseHelper;
+//use App\Http\Middleware\LicenseHelper;
 use Closure;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;

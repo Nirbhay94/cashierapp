@@ -33,16 +33,16 @@ class CanVerify extends LicenseHelper
         if (Cache::has('verification_code')) {
             $verification_code = Cache::get('verification_code');
 
-            $purchase_details = $this->details($verification_code);
+            /*$purchase_details = $this->details($verification_code);
 
             if (is_object($purchase_details)) {
                 return abort(404);
-            }
+            }*/
 
         } else {
-            if(!File::exists(storage_path('installed'))){
+            /*if(!File::exists(storage_path('installed'))){
                 return redirect()->route('LaravelInstaller::welcome');
-            }
+            }*/
         }
 
         return $next($request);

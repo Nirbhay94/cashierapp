@@ -33,13 +33,13 @@
         <label for="password-confirm" class="control-label visible-ie8 visible-ie9">{{__('Confirm Password')}}</label>
         {!! Form::password('password_confirmation', ['class' => 'form-control form-control-solid placeholder-no-fix', 'id' => 'password-confirm', 'required']) !!}
     </div>
-    @if(config('settings.reCaptchaStatus'))
+    {{--@if(config('settings.reCaptchaStatus'))
         <div class="form-group">
             <div class="control-label visible-ie8 visible-ie9 text-center">
                 {!! app('captcha')->render('en'); !!}
             </div>
         </div>
-    @endif
+    @endif--}}
     <div class="form-actions">
         <a href="{{route('login')}}" class="btn btn-default">
             {{__('Back')}}
