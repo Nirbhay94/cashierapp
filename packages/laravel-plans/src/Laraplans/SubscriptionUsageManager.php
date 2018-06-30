@@ -1,0 +1,123 @@
+<?php
+
+namespace Gerardojbaez\Laraplans;
+
+use Gerardojbaez\Laraplans\Exceptions\InvalidPlanFeatureException;
+
+class SubscriptionUsageManager
+{
+    /**
+     * Subscription model instance.
+     *
+     * @var \Illuminate\Database\Eloquent\Model
+     */
+    protected $subscription;
+
+    /**
+     * Create new Subscription Usage Manager instance.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $subscription
+     */
+    public function __construct($subscription)
+    {
+        $this->subscription = $subscription;
+    }
+
+    /**
+     * Record usage.
+     *
+     * This will create or update a usage record.
+     *
+     * @throws InvalidPlanFeatureException
+     * @param string $feature
+     * @param int $uses
+     * @return \Gerardojbaez\Laraplans\Models\PlanSubscriptionUsage|bool
+     */
+    public function record($feature, $uses = 1, $incremental = true)
+    {
+        $feature = new Feature($feature);
+
+        $usage = $this->subscription->usage()->firstOrNew([
+            'code' => $feature->getFeatureCode(),
+        ]);
+
+        if ($feature->isResettable()) {
+            // Set expiration date when the usage record is new
+            // or doesn't have one.
+            if (is_null($usage->valid_until)) {
+                // Set date from subscription creation date so
+                // the reset period match the period specified
+                // by the subscription's plan.
+                $usage->valid_until = $feature->getResetDate($this->subscription->created_at);
+            } elseif ($usage->isExpired() === true) {
+                // If the usage record has been expired, let's assign
+                // a new expiration date and reset the uses to zero.
+                $usage->valid_until = $feature->getResetDate($usage->valid_until);
+                $usage->used = 0;
+            }
+        }
+
+        if($feature->type == 'quantity'){
+            if($incremental){
+                $quantity = $usage->used + $uses;
+            }else{
+                $quantity = $uses;
+            }
+
+            if($feature->value >= 0){
+                if($quantity <= $feature->value){
+                    $usage->used = $quantity;
+
+                    $usage->save();
+
+                    return $usage;
+                }
+            }else{
+                $usage->used = $quantity;
+
+                $usage->save();
+
+                return $usage;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Reduce usage.
+     *
+     * @throws InvalidPlanFeatureException
+     * @param string $feature
+     * @param int $uses
+     * @return \Gerardojbaez\Laraplans\Models\PlanSubscriptionUsage|bool
+     */
+    public function reduce($feature, $uses = 1)
+    {
+        $feature = new Feature($feature);
+
+        $usage = $this->subscription->usage()->byFeatureCode($feature->getFeatureCode())->first();
+
+        if (!is_null($usage)) {
+            $usage->used = max($usage->used - $uses, 0);
+
+            $usage->save();
+
+            return $usage;
+        }
+
+        return false;
+    }
+
+    /**
+     * Clear usage data.
+     *
+     * @return $this
+     */
+    public function clear()
+    {
+        $this->subscription->usage()->delete();
+
+        return $this;
+    }
+}

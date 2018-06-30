@@ -10,7 +10,6 @@
 Thumbs.db
 
 ### Sass ###
-#bower_components/*
 /.sass-cache/*
 .sass-cache
 
@@ -20,22 +19,10 @@ Thumbs.db
 ### PHPSTORM BOOGERS ###
 .idea/*
 /.idea/*
-.phpintel/*
-/.phpintel/*
 
 ### DIFFERENT TYPE OF MASTER CONFIGS ###
-.env
 composer.lock
+.env
 
 ### ASSET EXCLUSIONS ###
-/node_modules
-/public/storage
-/storage/*.key
-/vendor
-Homestead.yaml
-Homestead.json
-/storage/debugbar
-/storage/framework
-/storage/logs
-/storage/users
-
+vendor/
