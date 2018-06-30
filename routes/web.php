@@ -369,7 +369,7 @@ Route::group([
         });
 
         // User Subscriptions and Summary Routes
-        Route::group(['prefix' => 'subscription', 'namespace' => 'Subscription', 'middleware' => 'license:extended'], function(){
+        Route::group(['prefix' => 'subscription', 'namespace' => 'Subscription'], function(){
 
             // Subscription Summary
             Route::group(['prefix' => 'summary', 'middleware' => ['permission:view financial data']], function(){
